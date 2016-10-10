@@ -22,3 +22,23 @@ Route::get('/sayHello/{name?}', function($name='Lassen'){
 	}
 	return "Hello $name";
 });
+
+
+Route::get('/uppercase/{word?}', function ($word="empty") {
+	if(is_string($word)){
+		$upperCase = strtoupper($word);
+	    return "Upper case word is: $upperCase";
+	}
+	else{
+		return "Value not a string";
+	}
+});
+
+Route::get('/increment/{number?}', function ($number=0) {
+	if(is_numeric($number))
+	    return "number $number plus one is = ".++$number;
+	else{
+		return "Value entered not a number";
+	}
+});
+
