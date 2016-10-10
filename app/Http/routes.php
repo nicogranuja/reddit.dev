@@ -26,8 +26,9 @@ Route::get('/sayHello/{name?}', function($name='Lassen'){
 
 Route::get('/uppercase/{word?}', function ($word="empty") {
 	if(is_string($word)){
-		$upperCase = strtoupper($word);
-	    return "Upper case word is: $upperCase";
+		$data['upperCase'] = strtoupper($word);
+		return view('codeup.uppercase')->with($data);
+	    // return "Upper case word is: $upperCase";
 	}
 	else{
 		return "Value not a string";
@@ -35,8 +36,11 @@ Route::get('/uppercase/{word?}', function ($word="empty") {
 });
 
 Route::get('/increment/{number?}', function ($number=0) {
-	if(is_numeric($number))
-	    return "number $number plus one is = ".++$number;
+	if(is_numeric($number)){
+		$data['number'] = ++$number;
+		return view('codeup.increment')->with($data);
+	    // return "number $number plus one is = ".++$number;
+	}
 	else{
 		return "Value entered not a number";
 	}
@@ -53,6 +57,7 @@ Route::get('/add/{number1?}/{number2?}', function ($number=0, $number1=0) {
 Route::get('/rolldice/{guess?}', function($guess=0){
 	$data['randomNum'] = rand(1,6);
 	$data ['guess'] = $guess;
+	$data ['correct'] = $data['randomNum'] == $data ['guess'];
 	//more clear way	
 	return view('codeup.roll-dice')->with($data);
 });

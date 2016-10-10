@@ -11,7 +11,7 @@
 		<p>The random number is = <?=$randomNum?></p>
 		<p>Your guess is= <?=$guess?> </p>
 		<?php 
-			if($randomNum == $guess){
+			if($correct){
 				echo "<p>You guessed right!</p>";
 			}
 			else{
