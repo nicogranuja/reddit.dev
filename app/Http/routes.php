@@ -42,3 +42,12 @@ Route::get('/increment/{number?}', function ($number=0) {
 	}
 });
 
+Route::get('/add/{number1?}/{number2?}', function ($number=0, $number1=0) {
+	if(is_numeric($number) && is_numeric($number1))
+	    return "the sum is = ".($number+$number1);
+	else{
+		return "Value entered not a number";
+	}
+});
+
+
