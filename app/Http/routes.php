@@ -15,52 +15,13 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/sayHello/{name?}', function($name='Lassen'){
-	// return view('sayHello');
-	if($name == 'Nico'){
-		return redirect('/sayHello');
-	}
-	return "Hello $name";
-});
 
+Route::get('/uppercase/{word?}', 'HomeController@uppercase');
 
-Route::get('/uppercase/{word?}', function ($word="empty") {
-	if(is_string($word)){
-		$data['upperCase'] = strtoupper($word);
-		return view('codeup.uppercase')->with($data);
-	    // return "Upper case word is: $upperCase";
-	}
-	else{
-		return "Value not a string";
-	}
-});
+Route::get('/lowercase/{word?}', 'HomeController@lowercase');
 
-Route::get('/increment/{number?}', function ($number=0) {
-	if(is_numeric($number)){
-		$data['number'] = ++$number;
-		return view('codeup.increment')->with($data);
-	    // return "number $number plus one is = ".++$number;
-	}
-	else{
-		return "Value entered not a number";
-	}
-});
+Route::get('/increment/{number?}', 'HomeController@increment');
 
-Route::get('/add/{number1?}/{number2?}', function ($number=0, $number1=0) {
-	if(is_numeric($number) && is_numeric($number1))
-	    return "the sum is = ".($number+$number1);
-	else{
-		return "Value entered not a number";
-	}
-});
-
-Route::get('/rolldice/{guess?}', function($guess=0){
-	$data['randomNum'] = [rand(1,6), rand(1,6),rand(1,6),rand(1,6),rand(1,6),rand(1,6)];
-	$data ['guess'] = $guess;
-
-	
-	//more clear way	
-	return view('codeup.roll-dice')->with($data);
-});
+Route::get('/rolldice/{guess?}', 'HomeController@roll');
 
 

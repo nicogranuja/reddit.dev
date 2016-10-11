@@ -19,7 +19,7 @@
 		<h2 >Make another guess</h2>
 		<ul >
 			@for($i=1; $i<=6; $i++)
-				<li ><a href="/rolldice/{!!$i!!}">Guess {{$i}}<a></li>
+				<li ><a href=" {{action('HomeController@roll', $i)}}">Guess {{$i}}<a></li>
 			@endfor
 		</ul>
 
