@@ -55,9 +55,10 @@ Route::get('/add/{number1?}/{number2?}', function ($number=0, $number1=0) {
 });
 
 Route::get('/rolldice/{guess?}', function($guess=0){
-	$data['randomNum'] = rand(1,6);
+	$data['randomNum'] = [rand(1,6), rand(1,6),rand(1,6),rand(1,6),rand(1,6),rand(1,6)];
 	$data ['guess'] = $guess;
-	$data ['correct'] = $data['randomNum'] == $data ['guess'];
+
+	
 	//more clear way	
 	return view('codeup.roll-dice')->with($data);
 });
