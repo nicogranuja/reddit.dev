@@ -22,6 +22,17 @@
 			}
 		}
 
+		public function decrement($number=0) {
+			if(is_numeric($number)){
+				$data['number'] = --$number;
+				return view('codeup.increment')->with($data);
+			    // return "number $number plus one is = ".++$number;
+			}
+			else{
+				return "Value entered not a number";
+			}
+		}
+
 		public function uppercase($word="empty") {
 			if(is_string($word)){
 				$data['upperCase'] = strtoupper($word);
@@ -36,7 +47,7 @@
 		public function lowercase($word="empty"){
 			if(is_string($word)){
 				$data['upperCase'] = strtolower($word);
-				
+
 				return view('codeup.uppercase')->with($data);
 			    
 			}

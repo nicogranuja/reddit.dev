@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('title')
-	<title>Increment</title>
+	Change the case
 @stop
 
 @section('content')

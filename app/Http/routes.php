@@ -22,6 +22,8 @@ Route::get('/lowercase/{word?}', 'HomeController@lowercase');
 
 Route::get('/increment/{number?}', 'HomeController@increment');
 
+Route::get('/decrement/{number?}', 'HomeController@decrement');
+
 Route::get('/rolldice/{guess?}', 'HomeController@roll');
 
 
