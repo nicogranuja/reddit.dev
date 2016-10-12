@@ -42,11 +42,15 @@ class PostsController extends Controller
     public function store(Request $request)
     {
         $post = new Post();
+        $post->created_by = 1;
         $post->title= $request->get('title');
         $post->url= $request->get('url');
         $post->content= $request->get('content');
         $post->save();
-        return back()->withInput();
+        
+        return redirect()->action('PostsController@index');
+        //go to show and pass the id
+        // return redirect()->action('PostsController@show', $post->id);
     }
 
     /**
@@ -70,7 +74,9 @@ class PostsController extends Controller
      */
     public function edit($id)
     {
-        return view('posts.edit');
+        $post = Post::find($id);
+        $data['post'] = $post;
+        return view('posts.edit')->with($data);
     }
 
     /**

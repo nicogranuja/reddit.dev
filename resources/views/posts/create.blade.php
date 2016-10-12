@@ -21,8 +21,8 @@
 	  </div>
 
 	  <div class="form-group">
-	    <label for="exampleInputEmail1">Email address</label>
-	    <textarea class="form-control" rows="3" name="description" placeholder="Description" >{{old('description')}}</textarea>
+	    <label for="content">Content</label>
+	    <textarea class="form-control" rows="3" name="content" placeholder="content" >{{old('content')}}</textarea>
 	  </div>
 	  
 	  <button type="submit" class="btn btn-default">Submit</button>

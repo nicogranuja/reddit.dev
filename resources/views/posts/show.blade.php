@@ -1,11 +1,28 @@
 @extends('layouts.master')
 
 @section('title')
-	Show
+	
 @stop
-
+Post Index
 @section('content')
-	<div class="">
-		{{$post}}
-	</div>
+
+	<h1>Post</h1>
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<th>Post#</th>
+				<th>Title</th>
+				<th>URL</th>
+				<th>Content</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>{{$post->id}}</td>
+				<td>{{$post->title}}</td>
+				<td>{{$post->url}}</td>
+				<td>{{$post->content}}</td>
+			</tr>
+		</tbody>
+	</table>
 @stop
