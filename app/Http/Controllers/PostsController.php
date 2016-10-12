@@ -88,7 +88,13 @@ class PostsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        return back()->withInput();
+        $post = Post::find($id);
+        $post->title = $request->get('title');
+        $post->url = $request->get('url');
+        $post->content = $request->get('content');
+        $post->save();
+
+        return redirect()->action('PostController@show', $post->id);
     }
 
     /**
