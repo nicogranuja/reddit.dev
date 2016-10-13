@@ -5,10 +5,6 @@
 @stop
 
 @section('content')
-	
-	<div>
-		<a href="/users" title=""><span class="glyphicon glyphicon-home" aria-hidden="true"></span></a>	
-	</div>
 	<form method="POST" action="{{action('UsersController@store')}}">
 		<div class="form-group">
 			{!! csrf_field() !!}

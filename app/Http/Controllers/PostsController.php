@@ -18,7 +18,7 @@ class PostsController extends Controller
      */
     public function index()
     {
-       $posts = Post::all();
+       $posts = Post::paginate(10);
        $data['posts'] = $posts;
        return view('posts.index')->with($data);
     }
@@ -30,7 +30,7 @@ class PostsController extends Controller
      */
     public function create()
     {
-        return view('users.create');
+        return view('posts.create');
     }
 
     /**
@@ -49,6 +49,8 @@ class PostsController extends Controller
         $post->url= $request->get('url');
         $post->content= $request->get('content');
         $post->save();
+
+        $request->session()->put('SUCCESS_MESSAGE', 'Post was successfully saved.');
         
         return redirect()->action('PostsController@index');
         //go to show and pass the id to show the record added
@@ -110,7 +112,7 @@ class PostsController extends Controller
      */
     public function destroy($id)
     {
-        
+
         $post = Post::find($id);
         
         $post->delete();

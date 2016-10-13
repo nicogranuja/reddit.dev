@@ -5,9 +5,7 @@
 @stop
 
 @section('content')
-	<div>
-		<a href="/posts" title=""><span class="glyphicon glyphicon-home" aria-hidden="true"></span></a>	
-	</div>
+	
 	<form method="POST" action="{{action('PostsController@update', $post->id)}}">
 		<div class="form-group">
 			{!! csrf_field() !!}

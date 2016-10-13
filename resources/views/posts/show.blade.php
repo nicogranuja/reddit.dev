@@ -5,9 +5,7 @@ Post {{$post->id}}
 @stop
 
 @section('content')
-	<div>
-		<a href="/posts" title=""><span class="glyphicon glyphicon-home" aria-hidden="true"></span></a>	
-	</div>
+
 	<h1>Post</h1>
 	<table class="table table-striped">
 		<thead>

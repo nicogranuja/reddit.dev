@@ -5,9 +5,7 @@ User {{$user->id}}
 @stop
 
 @section('content')
-	<div>
-		<a href="/users" title=""><span class="glyphicon glyphicon-home" aria-hidden="true"></span></a>	
-	</div>
+	
 	<h1>User</h1>
 	<table class="table table-striped">
 		<thead>

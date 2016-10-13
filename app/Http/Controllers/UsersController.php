@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\User;
+use Hash;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -18,7 +19,7 @@ class UsersController extends Controller
      */
     public function index()
     {
-        $users = User::all();
+        $users = User::paginate(10);
         $data['users'] = $users;
         return view('users.index')->with($data);
     }
@@ -47,8 +48,10 @@ class UsersController extends Controller
 
         $user->name= $request->get('name');
         $user->email= $request->get('email');
-        $user->password= $request->get('password');
+        $user->password= Hash::make($request->get('password'));
         $user->save();
+
+        // $request->session()->put('SUCCESS_MESSAGE', 'User was successfully created.');
         
         return redirect()->action('UsersController@index');
     }
@@ -93,7 +96,7 @@ class UsersController extends Controller
         $user = User::find($id);
         $user->name= $request->get('name');
         $user->email= $request->get('email');
-        $user->password= $request->get('password');
+        $user->password= Hash::make($request->get('password'));
         $user->save();
 
         // return redirect()->action('usersController@index');
@@ -108,7 +111,7 @@ class UsersController extends Controller
      */
     public function destroy($id)
     {
-        
+
         $user = User::find($id);
         
         $user->delete();
