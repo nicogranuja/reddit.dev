@@ -32,6 +32,9 @@ Route::get('/rolldice/{guess?}', 'HomeController@roll');
 // Route::get('/post', 'PostController@index');
 Route::resource('posts', 'PostsController');
 
+//User Controller
+Route::resource('users', 'UsersController');
+
 Route::get('/orm-test', function(){
 	$post = new Post();
 	$post->created_by = 1;
