@@ -42,8 +42,12 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
-        
+        $request->session()->flash('ERROR_MESSAGE', 'User was not saved. Please see messages under inputs');
+
         $this->validate($request,User::$rules);
+        
+        $request->session()->forget('ERROR_MESSAGE');
+        
         $user = new User();
 
         $user->name= $request->get('name');
@@ -51,9 +55,10 @@ class UsersController extends Controller
         $user->password= Hash::make($request->get('password'));
         $user->save();
 
-        // $request->session()->put('SUCCESS_MESSAGE', 'User was successfully created.');
+        $request->session()->flash('SUCCESS_MESSAGE', 'User was successfully created.');
         
-        return redirect()->action('UsersController@index');
+        return redirect()->action('UsersController@show', $user->id);
+        // return redirect()->action('UsersController@index');
     }
 
     /**
@@ -91,13 +96,20 @@ class UsersController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $request->session()->flash('ERROR_MESSAGE', 'User was not updated. Please see messages under inputs');
+
         $this->validate($request,User::$rules);
+        
+        $request->session()->forget('ERROR_MESSAGE');
+        
 
         $user = User::find($id);
         $user->name= $request->get('name');
         $user->email= $request->get('email');
         $user->password= Hash::make($request->get('password'));
         $user->save();
+
+        $request->session()->flash('SUCCESS_MESSAGE', 'User was successfully updated.');
 
         // return redirect()->action('usersController@index');
         return redirect()->action('UsersController@show', $user->id);

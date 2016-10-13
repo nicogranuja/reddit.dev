@@ -41,7 +41,12 @@ class PostsController extends Controller
      */
     public function store(Request $request)
     {
+
+        $request->session()->flash('ERROR_MESSAGE', 'Post was not saved. Please see messages under inputs');
+
         $this->validate($request,Post::$rules);
+
+        $request->session()->forget('ERROR_MESSAGE');
 
         $post = new Post();
         $post->created_by = 1;
@@ -50,11 +55,12 @@ class PostsController extends Controller
         $post->content= $request->get('content');
         $post->save();
 
-        $request->session()->put('SUCCESS_MESSAGE', 'Post was successfully saved.');
         
-        return redirect()->action('PostsController@index');
+        $request->session()->flash('SUCCESS_MESSAGE', 'Post was successfully saved.');
+        
+        // return redirect()->action('PostsController@index');
         //go to show and pass the id to show the record added
-        // return redirect()->action('PostsController@show', $post->id);
+        return redirect()->action('PostsController@show', $post->id);
     }
 
     /**
@@ -92,13 +98,19 @@ class PostsController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $request->session()->flash('ERROR_MESSAGE', 'Post was not updated. Please see messages under inputs');
+
         $this->validate($request,Post::$rules);
+
+        $request->session()->forget('ERROR_MESSAGE');
 
         $post = Post::find($id);
         $post->title = $request->get('title');
         $post->url = $request->get('url');
         $post->content = $request->get('content');
         $post->save();
+
+        $request->session()->flash('SUCCESS_MESSAGE', 'Post was successfully updated.');
 
         // return redirect()->action('PostsController@index');
         return redirect()->action('PostsController@show', $post->id);
