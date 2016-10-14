@@ -15,7 +15,7 @@ class UsersController extends Controller
     //prevent not logged in users from accessing the page
     public function __construct()
     {
-        $this->middleware('auth', ['except' => ['index', 'show']]);
+        $this->middleware('auth');
     }
     /**
      * Display a listing of the resource.

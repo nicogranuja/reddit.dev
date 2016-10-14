@@ -34,7 +34,7 @@ class AuthController extends Controller
     {
         $this->middleware('guest', ['except' => 'getLogout']);
 
-        // $this->redirectPath = action('PostsController@index');
+        $this->redirectPath = action('PostsController@index');
     }
 
     /**

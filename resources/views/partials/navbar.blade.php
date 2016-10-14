@@ -11,6 +11,11 @@
       <a class="navbar-brand">
         Reddit.dev
       </a>
+      @if(Auth::check())
+        <div class="navbar-brand">
+           <small>Welcome, {{Auth::user()->name}}</small>
+        </div>
+      @endif
       
     </div>
 
@@ -31,6 +36,7 @@
             <span class="glyphicon glyphicon-plus" aria-hidden="true">Register</span></a>
         </li>
       @else
+
           <li>
             <a href="{{action('UsersController@index')}}">
               <span class="glyphicon glyphicon-user" aria-hidden="true">Users</span></a>

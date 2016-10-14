@@ -13,7 +13,11 @@ use Illuminate\Support\Facades\Log;
 
 class PostsController extends Controller
 {
-    
+    //prevent not logged in users from accessing the page
+    public function __construct()
+    {
+        $this->middleware('auth', ['except' => ['index', 'show']]);
+    }
     /**
      * Display a listing of the resource.
      *

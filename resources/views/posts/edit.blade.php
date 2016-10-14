@@ -34,7 +34,7 @@
 
 	  <div class="form-group">
 	    <label for="exampleInputEmail1">Email address</label>
-	    <textarea class="form-control" rows="3" name="content" placeholder="Description" >{{old('content') == null ? $post->content : old('content')}}</textarea>
+	    <textarea class="form-control" rows="10" name="content" placeholder="Description" >{{old('content') == null ? $post->content : old('content')}}</textarea>
 	  </div>
 	  @if($errors->has('content'))
 			<div class="alert alert-danger">
