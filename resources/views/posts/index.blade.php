@@ -10,17 +10,19 @@
 	@foreach($posts as $post)
 		<div class="col-sm-6 col-md-4">
 			<div class="jumbotron">
-				<h3>
-					{{$post->title}}
+				<h3 class="text-center">
+					{{ substr($post->title, 0,15) . "..."}}
 				</h3>
-				<a href="{{$post->url}}" title="">{{$post->url}}</a>
+				<a href="{{$post->url}}" title="">
+					<img src="{{$post->url}}" alt="">
+				</a>
 
 				<div class="panel panel-default">
 				  <div class="panel-heading">
 				    <h3 class="panel-title">Content</h3>
 				  </div>
 				  <div class="panel-body">
-					{{$post->content}}
+						{{ substr($post->content, 0,40) . "..."}}
 				  </div>
 				</div>
 
