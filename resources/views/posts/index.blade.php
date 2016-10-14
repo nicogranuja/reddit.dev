@@ -8,11 +8,15 @@
 	
 	
 	@foreach($posts as $post)
+	
 		<div class="col-sm-6 col-md-4">
 			<div class="jumbotron">
 				<h3 class="text-center">
 					{{ substr($post->title, 0,15) . "..."}}
 				</h3>
+
+				<a href="{{$post->created_by}}" title="">Posted by: {{$post->created_by}}</a>
+
 				<a href="{{$post->url}}" title="">
 					<img src="{{$post->url}}" alt="">
 				</a>
@@ -26,11 +30,11 @@
 				  </div>
 				</div>
 
-				<div class="pull-right">
+				<div class="pull-left">
 					Posted on: {{$post->created_at->setTimezone('America/Chicago')->diffForHumans()}}
 				</div>
-
-				<a href="{{action('PostsController@show', $post->id)}}" title="" class="btn btn-primary">
+				<hr>
+				<a href="{{action('PostsController@show', $post->id)}}" title="" class="btn btn-primary text-center">
 					Go to Post		
 				</a>
 

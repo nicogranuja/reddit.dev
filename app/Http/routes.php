@@ -33,22 +33,15 @@ Route::get('/rolldice/{guess?}', 'HomeController@roll');
 Route::resource('posts', 'PostsController');
 
 //User Controller
-Route::resource('users', 'UsersController');
+Route::resource('users', 'UsersController', ['except' => ['create', 'store']]);
 
-Route::get('/orm-test', function(){
-	$post = new Post();
-	$post->created_by = 1;
-	$post->title = 'Eloquent is awsome';
-	$post->url = 'codeup.com';
-	$post->content = 'some content stuff';
-	$post->save();
+// Authentication routes...
+Route::get('auth/login', 'Auth\AuthController@getLogin');
+Route::post('auth/login', 'Auth\AuthController@postLogin');
+Route::get('auth/logout', 'Auth\AuthController@getLogout');
 
-	$post2 = new post();
-	$post2->created_by = 1;
-	$post2->title = 'title';
-	$post2->url = 'google.com';
-	$post2->content = 'some content stuff';
-	$post2->save();
-});
+// Registration routes...
+Route::get('auth/register', 'Auth\AuthController@getRegister');
+Route::post('auth/register', 'Auth\AuthController@postRegister');
 
 

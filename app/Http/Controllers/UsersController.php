@@ -70,6 +70,10 @@ class UsersController extends Controller
     public function show($id)
     {
         $user = User::find($id);
+
+        if(User::findorfail($id))
+            abort(404);
+
         $data['user'] = $user;
         return view('users.show')->with($data);
     }
@@ -83,6 +87,10 @@ class UsersController extends Controller
     public function edit($id)
     {
         $user = User::find($id);
+
+        if(User::findorfail($id))
+            abort(404);
+
         $data['user'] = $user;
         return view('users.edit')->with($data);
     }
@@ -104,6 +112,10 @@ class UsersController extends Controller
         
 
         $user = User::find($id);
+
+        if(User::findorfail($id))
+            abort(404);
+
         $user->name= $request->get('name');
         $user->email= $request->get('email');
         $user->password= Hash::make($request->get('password'));
@@ -126,6 +138,9 @@ class UsersController extends Controller
 
         $user = User::find($id);
         
+        if(User::findorfail($id))
+            abort(404);
+
         $user->delete();
         return redirect()->action('UsersController@index');
     }
