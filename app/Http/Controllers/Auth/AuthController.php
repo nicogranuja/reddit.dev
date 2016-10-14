@@ -23,7 +23,7 @@ class AuthController extends Controller
 
     use AuthenticatesAndRegistersUsers, ThrottlesLogins;
 
-    // protected $redirectPath = '/posts';
+    protected $redirectPath = '/posts';
     protected $redirectAfterLogout ='/auth/login';
     /**
      * Create a new authentication controller instance.
@@ -34,7 +34,7 @@ class AuthController extends Controller
     {
         $this->middleware('guest', ['except' => 'getLogout']);
 
-        $this->redirectPath = action('PostsController@index');
+        // $this->redirectPath = action('PostsController@index');
     }
 
     /**

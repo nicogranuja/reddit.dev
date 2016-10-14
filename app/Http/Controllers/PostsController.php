@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Log;
 
 class PostsController extends Controller
 {
+    
     /**
      * Display a listing of the resource.
      *
@@ -53,7 +54,7 @@ class PostsController extends Controller
         $request->session()->forget('ERROR_MESSAGE');
 
         $post = new Post();
-        $post->created_by = 1;
+        $post->created_by = $request->user()->id;
         $post->title= $request->get('title');
         $post->url= $request->get('url');
         $post->content= $request->get('content');

@@ -12,7 +12,7 @@ Post {{$post->id}}
 				{{ substr($post->title, 0,15) . "..."}}
 			</h3>
 
-			<a href="{{$post->created_by}}" title="">Posted by: {{$post->created_by}}</a>
+			<a href="{{action('PostsController@show',$post->created_by)}}" title="">Posted by: {{$post->created_by}}</a>
 
 			<a href="{{$post->url}}" title="">
 				<img src="{{$post->url}}" alt="">

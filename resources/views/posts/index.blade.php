@@ -15,7 +15,7 @@
 					{{ substr($post->title, 0,15) . "..."}}
 				</h3>
 
-				<a href="{{$post->created_by}}" title="">Posted by: {{$post->created_by}}</a>
+				<a href="{{action('PostsController@show',$post->id)}}" title="">Posted by: {{$post->created_by}}</a>
 
 				<a href="{{$post->url}}" title="">
 					<img src="{{$post->url}}" alt="">
@@ -33,14 +33,13 @@
 				<div class="pull-left">
 					Posted on: {{$post->created_at->setTimezone('America/Chicago')->diffForHumans()}}
 				</div>
-				<hr>
 				<a href="{{action('PostsController@show', $post->id)}}" title="" class="btn btn-primary text-center">
 					Go to Post		
 				</a>
 
+				<hr>
 			</div>
 		</div>	
-		
 	@endforeach
 
 	<div class="text-center">

@@ -11,37 +11,40 @@
       <a class="navbar-brand">
         Reddit.dev
       </a>
-      {{-- <a class="navbar-brand" href="{{action('PostsController@index')}}">
-        <span class="glyphicon glyphicon-edit" aria-hidden="true">Posts</span>
-      </a>
-      <a class="navbar-brand" href="{{action('UsersController@index')}}">
-        <span class="glyphicon glyphicon-user" aria-hidden="true">Users</span>
-      </a> --}}
       
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
+      <li>
+        <a  href="{{action('PostsController@index')}}">
+          <span class="glyphicon glyphicon-edit" aria-hidden="true">Posts</span></a>          
+      </li>
+      @if(!Auth::check())
         <li>
-          <a  href="{{action('PostsController@index')}}">
-            <span class="glyphicon glyphicon-edit" aria-hidden="true">Posts</span>
-          </a>          
+          <a href="{{action('Auth\AuthController@getLogin')}}">
+            <span class="glyphicon glyphicon-log-in" aria-hidden="true">Login</span></a>
         </li>
         <li>
-          <a href="{{action('UsersController@index')}}">
-            <span class="glyphicon glyphicon-user" aria-hidden="true">Users</span>
-          </a>
+          <a href="{{action('Auth\AuthController@getRegister')}}">
+            <span class="glyphicon glyphicon-plus" aria-hidden="true">Register</span></a>
         </li>
-        <li>
-          <a href="{{action('PostsController@create')}}">
-            <span class="glyphicon glyphicon-plus" aria-hidden="true">User</span>
-          </a>
-        </li>
-        <li class=""><a href="{{action('UsersController@create')}}">
-            <span class="glyphicon glyphicon-pencil" aria-hidden="true">Post</span>
-        </a>
-        </li> 
+      @else
+          <li>
+            <a href="{{action('UsersController@index')}}">
+              <span class="glyphicon glyphicon-user" aria-hidden="true">Users</span></a>
+          </li>
+          
+          <li class=""><a href="{{action('PostsController@create')}}">
+            <span class="glyphicon glyphicon-pencil" aria-hidden="true">Post</span></a>
+          </li>
+
+          <li class=""><a href="{{action('Auth\AuthController@getLogout')}}">
+            <span class="glyphicon glyphicon-log-out" aria-hidden="true">Logout</span></a>
+          </li>
+        @endif
+        
       </ul>
       <form class="navbar-form navbar-right">
         <div class="form-group">
