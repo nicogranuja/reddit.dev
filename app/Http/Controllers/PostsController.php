@@ -31,10 +31,10 @@ class PostsController extends Controller
        if($request->has('searchTitle'))
        {
 
-            $data['posts'] = Post::search($request->get('searchTitle'))->paginate(8);
+            $data['posts'] = Post::search($request->get('searchTitle'))->paginate(6);
        }
         else{
-            $posts = Post::orderBy('created_at', 'desc')->paginate(8);
+            $posts = Post::orderBy('created_at', 'desc')->paginate(6);
             $data['posts'] = $posts;
         }
         return view('posts.index')->with($data);

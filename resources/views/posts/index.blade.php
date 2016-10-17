@@ -8,7 +8,7 @@
 	
 	
 	@foreach($posts as $post)
-		<div class="col-xs-12 col-sm-6 col-md-3">
+		<div class="col-xs-12 col-sm-6 col-md-4">
 			<div class="well show-box">
 				<h3 class="text-center">
 					{{ substr($post->title, 0,15) . "..."}}
@@ -16,7 +16,7 @@
 
 				<span>Posted:</span><a href="{{action('UsersController@show',$post->user->id)}}" title="">{{$post->user->name}}
 				</a>
-				<div class="">
+				<div class="text-center">
 					<a href="{{$post->url}}" title="">
 						<img src="https://unsplash.it/230/?random" alt="">
 					</a>

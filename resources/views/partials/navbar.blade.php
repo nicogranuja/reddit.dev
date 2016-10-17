@@ -58,7 +58,7 @@
         <div class="form-group">
           <input type="text" name="searchTitle" class="form-control" placeholder="Search">
         </div>
-        <button type="submit" class="btn btn-primary">Search Title</button>
+        <button type="submit" class="btn btn-default">Search Title</button>
       </form>
      
     </div><!-- /.navbar-collapse -->
