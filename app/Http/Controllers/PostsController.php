@@ -27,7 +27,7 @@ class PostsController extends Controller
     {
 
        // $posts = Post::paginate(6);
-       $posts = Post::with('user')->paginate(6);
+        $posts = Post::with('user')->paginate(8);
        $data['posts'] = $posts;
 
        return view('posts.index')->with($data);

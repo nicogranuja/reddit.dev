@@ -8,7 +8,7 @@
 	
 	
 	@foreach($posts as $post)
-		<div class="col-sm-6 col-md-4">
+		<div class="col-xs-12 col-sm-6 col-md-3">
 			<div class="well show-box">
 				<h3 class="text-center">
 					{{ substr($post->title, 0,15) . "..."}}

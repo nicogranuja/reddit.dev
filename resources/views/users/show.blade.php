@@ -29,8 +29,13 @@ User {{$user->id}}
 	<h3>Posts: {{count($user->posts) ? count($user->posts) : "No posts found."}}</h3>
 	<hr>
 	@foreach($user->posts as $post)
-
-		<div class="col-md-6">
+		@if(count($user->posts) > 8)
+			<div class="col-xs-12 col-sm-6 col-md-3">
+		@elseif(count($user->posts) < 7 && count($user->posts) > 4)
+			<div class="col-xs-12 col-sm-6 col-md-4">
+		@else
+			<div class="col-xs-12 col-md-6">
+		@endif
 			<div class="well show-box">
 			
 				<h3 class="text-center">
@@ -59,7 +64,7 @@ User {{$user->id}}
 				<br>
 				@if(Auth::check())
 					<p>
-						<a href="/posts/{{$post->id}}/edit" title="" class="btn btn-primary">
+						<a href="{{action('PostsController@edit', $post->id)}}" title="" class="btn btn-primary">
 							Edit
 						</a>
 					</p>

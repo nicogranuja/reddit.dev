@@ -36,8 +36,8 @@ Post {{$post->id}}
 			<br>
 			@if(Auth::check())
 				<p>
-					<a href="/posts/{{$post->id}}/edit" title="" class="btn btn-primary">
-						Edit
+					<a href="{{action('PostsController@edit', $post->id)}}" title="" class="btn btn-primary">
+							Edit
 					</a>
 				</p>
 			@endif
