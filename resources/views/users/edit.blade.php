@@ -43,12 +43,12 @@
 		@endif
 
 	  
-	  <button type="submit" class="btn btn-primary">Submit</button>
+	  <button type="submit" class="btn btn-primary pull-left">Submit</button>
 	</form>
 	<form action="{{action('UsersController@destroy', $user->id)}}" method="POST" >
 		{!! csrf_field() !!}
 		{!! method_field('DELETE')!!}
 		
-		<button type="submit" class="btn btn-danger">Delete</button>
+		<button type="submit" class="btn btn-danger pull-right" >Delete</button>
 	</form>
 @stop

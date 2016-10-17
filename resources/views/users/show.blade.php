@@ -13,6 +13,7 @@ User {{$user->id}}
 				<th>ID</th>
 				<th>Name</th>
 				<th>Email</th>
+				<th>Member since</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -20,6 +21,7 @@ User {{$user->id}}
 				<td>{{$user->id}}</td>
 				<td>{{$user->name}}</td>
 				<td>{{$user->email}}</td>
+				<td>{{$user->created_at->diffForHumans()}}</td>
 				
 			</tr>
 		</tbody>
@@ -61,6 +63,12 @@ User {{$user->id}}
 				<div class="pull-left">
 					Posted: {{$post->created_at->setTimezone('America/Chicago')->diffForHumans()}}
 				</div>
+				<div class="pull-right">
+					<a href="{{action('PostsController@show', $post->id)}}" title="" class="btn btn-primary">
+						Go to Post		
+					</a>
+				</div>
+				<hr>
 				<br>
 				@if(Auth::check())
 					<p>
@@ -69,6 +77,7 @@ User {{$user->id}}
 						</a>
 					</p>
 				@endif
+
 
 			</div>
 		</div>

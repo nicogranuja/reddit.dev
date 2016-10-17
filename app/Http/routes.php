@@ -45,3 +45,6 @@ Route::get('auth/register', 'Auth\AuthController@getRegister');
 Route::post('auth/register', 'Auth\AuthController@postRegister');
 
 
+// Route::get('posts', 'PostsController@search');
+// Route::post('users', 'UsersController@search');
+

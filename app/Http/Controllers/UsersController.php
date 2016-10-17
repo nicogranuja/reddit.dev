@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\User;
 use Hash;
+use App\Models\Post;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -22,10 +23,15 @@ class UsersController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        $users = User::paginate(9);
-        $data['users'] = $users;
+    public function index(Request $request)
+    {   
+        if(!$request->has('searchName')){
+            $users = User::paginate(9);
+            $data['users'] = $users;
+        }
+        else{
+            $data['users'] = User::search($request->get('searchName'))->paginate(9);
+        }
         return view('users.index')->with($data);
     }
 

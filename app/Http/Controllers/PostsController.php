@@ -23,14 +23,21 @@ class PostsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
 
        // $posts = Post::paginate(6);
-        $posts = Post::with('user')->paginate(8);
-       $data['posts'] = $posts;
 
-       return view('posts.index')->with($data);
+       if($request->has('searchTitle'))
+       {
+
+            $data['posts'] = Post::search($request->get('searchTitle'))->paginate(8);
+       }
+        else{
+            $posts = Post::orderBy('created_at', 'desc')->paginate(8);
+            $data['posts'] = $posts;
+        }
+        return view('posts.index')->with($data);
     }
 
     /**
@@ -149,5 +156,9 @@ class PostsController extends Controller
 
         $post->delete();
         return redirect()->action('PostsController@index');
+    }
+
+    public function search(Request $request){
+        
     }
 }

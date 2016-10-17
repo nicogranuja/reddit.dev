@@ -15,4 +15,9 @@ class Post extends BaseModel
     public function user(){
     	return $this->belongsTo('App\User', 'created_by' , 'id');
     }
+
+    public static function search($searchTerm){
+    	return self::where('title', 'LIKE', '%'.$searchTerm.'%')
+    		->orWhere('content', 'LIKE', '%'.$searchTerm.'%')->with('user');
+    }
 }

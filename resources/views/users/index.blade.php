@@ -5,7 +5,12 @@
 @stop
 
 @section('content')
-	
+	<form class="" method="GET" action="{{action('UsersController@index')}}">
+          <div class="navbar navbar-left">
+            <input type="text" name="searchName" class="form-control" placeholder="Search">
+          </div>
+          <button type="submit" class="btn btn-primary">Search User</button>
+    </form>
 	<table class="table table-striped">
 	<thead>
 		<tr>
@@ -34,6 +39,8 @@
 	</table>
 
 	<div class="text-center">
-		{!! $users->render() !!}
+		{{-- {!! $users->render() !!} --}}
+
+		{!! $users->appends(['searchName' => Request::get('searchName')])->render() !!}
 	</div>
 @stop

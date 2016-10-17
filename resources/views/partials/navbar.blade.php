@@ -52,13 +52,15 @@
         @endif
         
       </ul>
-      <form class="navbar-form navbar-right">
+
+      <form class="navbar-form navbar-right" method="GET" action="{{action('PostsController@index')}}">
+        
         <div class="form-group">
-          <input type="text" class="form-control" placeholder="Search">
+          <input type="text" name="searchTitle" class="form-control" placeholder="Search">
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary">Search Title</button>
       </form>
-      
+     
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
