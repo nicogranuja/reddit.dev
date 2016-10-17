@@ -8,14 +8,14 @@
 	
 	
 	@foreach($posts as $post)
-	
 		<div class="col-sm-6 col-md-4">
-			<div class="jumbotron">
+			<div class="well show-box">
 				<h3 class="text-center">
 					{{ substr($post->title, 0,15) . "..."}}
 				</h3>
 
-				<a href="{{action('PostsController@show',$post->id)}}" title="">Posted by: {{$post->created_by}}</a>
+				<span>Posted:</span><a href="{{action('UsersController@show',$post->user->id)}}" title="">{{$post->user->name}}
+				</a>
 
 				<a href="{{$post->url}}" title="">
 					<img src="{{$post->url}}" alt="">

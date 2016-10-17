@@ -42,13 +42,12 @@
 			</div>
 		@endif
 	  
-	  <button type="submit" class="btn btn-primary">Submit</button>
+	  <button type="submit" class="btn btn-primary pull-left">Submit</button>
 	</form>
-	<form action="{{action('PostsController@destroy', $post->id)}}" method="POST" >
+	<form action="{{action('PostsController@destroy', $post->id)}}" method="POST" class="pull-left">
 		{!! csrf_field() !!}
 		{!! method_field('DELETE')!!}
 
-
-		<button type="submit" class="btn btn-danger">Delete</button>
+		<button type="submit" class="btn btn-danger pull-right">Delete</button>
 	</form>
 @stop

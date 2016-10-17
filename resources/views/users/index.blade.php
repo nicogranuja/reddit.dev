@@ -21,7 +21,12 @@
 					<a href="{{action('UsersController@edit', $user->id)}}" class="btn btn-primary btn-sm">Edit</a>
 					<a href="{{action('UsersController@destroy', $user->id)}}" class="btn btn-danger btn-sm">Delete</a>
 				</td>
-				<td>{{$user->name}}</td>
+				<td>
+				<a href="{{action('UsersController@show', $user->id)}}" title="">
+					
+					{{$user->name}}
+				</a>
+				</td>
 				<td>{{$user->email}}</td>
 			</tr>
 		</tbody>

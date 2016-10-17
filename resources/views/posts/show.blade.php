@@ -6,36 +6,41 @@ Post {{$post->id}}
 
 @section('content')
 
-	<div class="col-sm-6 col-md-4 col-md-offset-4">
-		<div class="jumbotron">
+	<div class="col-sm-6 col-md-4 col-md-offset-1">
+		<div class="jumbotron" style="width:250%">
+			
 			<h3 class="text-center">
-				{{ substr($post->title, 0,15) . "..."}}
+				{{ $post->title}}
 			</h3>
-
-			<a href="{{action('PostsController@show',$post->created_by)}}" title="">Posted by: {{$post->created_by}}</a>
-
-			<a href="{{$post->url}}" title="">
-				<img src="{{$post->url}}" alt="">
-			</a>
+			<span>Posted by:</span>
+			<a href="{{action('UsersController@show',$post->user->id)}}" title=""> {{$post->user->name}}</a>
+			<hr>
+			<div class="col-md-offset-4">
+				<a href="{{$post->url}}" title="">
+					<img src="{{$post->url}}" alt="" class="img img-responsive">
+				</a>
+			</div>
 
 			<div class="panel panel-default">
 			  <div class="panel-heading">
 			    <h3 class="panel-title">Content</h3>
 			  </div>
 			  <div class="panel-body">
-					{{ substr($post->content, 0,40) . "..."}}
+					{{ $post->content}}
 			  </div>
 			</div>
 
 			<div class="pull-left">
-				Posted on: {{$post->created_at->setTimezone('America/Chicago')->diffForHumans()}}
+				Posted: {{$post->created_at->setTimezone('America/Chicago')->diffForHumans()}}
 			</div>
-			<hr>
-			<p>
-				<a href="/posts/{{$post->id}}/edit" title="" class="btn btn-primary">
-					Edit
-				</a>
-			</p>
+			<br>
+			@if(Auth::check())
+				<p>
+					<a href="/posts/{{$post->id}}/edit" title="" class="btn btn-primary">
+						Edit
+					</a>
+				</p>
+			@endif
 
 		</div>
 	</div>	

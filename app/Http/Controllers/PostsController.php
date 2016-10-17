@@ -26,7 +26,8 @@ class PostsController extends Controller
     public function index()
     {
 
-       $posts = Post::paginate(9);
+       // $posts = Post::paginate(6);
+       $posts = Post::with('user')->paginate(6);
        $data['posts'] = $posts;
 
        return view('posts.index')->with($data);
@@ -67,8 +68,8 @@ class PostsController extends Controller
         $post->save();
 
 
-        Log::info("Saving post values {$post->created_by} {$post->title} {$post->url}
-            {$post->content}");
+        // Log::info("Saving post values {$post->created_by} {$post->title} {$post->url}
+        //     {$post->content}");
 
         
         $request->session()->flash('SUCCESS_MESSAGE', 'Post was successfully saved.');

@@ -74,10 +74,9 @@ class UsersController extends Controller
      */
     public function show($id)
     {
-        $user = User::find($id);
+       $user = User::findOrFail($id);
 
-        if(User::findorfail($id))
-            abort(404);
+       
 
         $data['user'] = $user;
         return view('users.show')->with($data);
@@ -91,10 +90,7 @@ class UsersController extends Controller
      */
     public function edit($id)
     {
-        $user = User::find($id);
-
-        if(User::findorfail($id))
-            abort(404);
+        $user = User::findOrFail($id);
 
         $data['user'] = $user;
         return view('users.edit')->with($data);
@@ -116,10 +112,9 @@ class UsersController extends Controller
         $request->session()->forget('ERROR_MESSAGE');
         
 
-        $user = User::find($id);
+        $user = User::findOrFail($id);
 
-        if(User::findorfail($id))
-            abort(404);
+        
 
         $user->name= $request->get('name');
         $user->email= $request->get('email');
@@ -141,11 +136,9 @@ class UsersController extends Controller
     public function destroy($id)
     {
 
-        $user = User::find($id);
+        $user = User::findOrFail($id);
         
-        if(User::findorfail($id))
-            abort(404);
-
+        
         $user->delete();
         return redirect()->action('UsersController@index');
     }
