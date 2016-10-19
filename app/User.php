@@ -52,6 +52,15 @@ class User extends BaseModel implements AuthenticatableContract,
         
     }
 
+    public function getTotalScore($userPosts){
+        
+        $total = 0;
+        foreach ($userPosts as $post) {
+            $total += $post->voteScore();
+        }
+        return $total;
+    }
+
     public static function search($searchTerm){
         return self::where('name', 'LIKE', '%'.$searchTerm.'%')
             ->orWhere('email', 'LIKE', '%'.$searchTerm.'%');

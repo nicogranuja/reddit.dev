@@ -15,7 +15,7 @@ Post {{$post->id}}
 			<span>Posted by:</span>
 			<a href="{{action('UsersController@show',$post->user->id)}}" title=""> {{$post->user->name}}</a>
 			<hr>
-			<div class="col-sm-offset-3">
+			<div class="col-sm-offset-2">
 				<a href="{{$post->url}}" title="">
 					<img src="{{$post->url}}" alt="" class="img img-responsive img-show-post">
 				</a>
@@ -34,7 +34,7 @@ Post {{$post->id}}
 				Posted: {{$post->created_at->setTimezone('America/Chicago')->diffForHumans()}}
 			</div>
 			<br>
-			@if(Auth::check())
+			@if(Auth::id() == $post->created_by)
 				<p>
 					<a href="{{action('PostsController@edit', $post->id)}}" title="" class="btn btn-primary">
 							Edit

@@ -29,6 +29,9 @@ User {{$user->id}}
 	<a href="{{action('UsersController@edit', $user->id)}}" title="" class="btn btn-primary">Edit User</a>
 	<br>
 	<h3>Posts: {{count($user->posts) ? count($user->posts) : "No posts found."}}</h3>
+	@if(count($user->posts))
+		<h4>Posts Score: {{$user->getTotalScore($user->posts)}}</h4>
+	@endif
 	<hr>
 	@foreach($user->posts as $post)
 		@if(count($user->posts) > 8)
@@ -47,6 +50,7 @@ User {{$user->id}}
 					<a href="{{action('PostsController@show', $post->id)}}" title="" class="btn btn-default">
 						Go to Post		
 					</a>
+				</div>
 				<hr>
 				<div class="col-md-offset-1">
 					<a href="{{$post->url}}" title="">
@@ -67,7 +71,7 @@ User {{$user->id}}
 					Posted: {{$post->created_at->setTimezone('America/Chicago')->diffForHumans()}}
 				</div>
 				
-				</div>
+				
 				<hr>
 				<br>
 				@if(Auth::check())

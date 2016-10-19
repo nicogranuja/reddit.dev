@@ -114,9 +114,13 @@ class PostsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request, $id)
     {
         $post = Post::findorfail($id);
+        if (!$post->ownedBy($request->user())) {
+            $request->session()->flash('ERROR_MESSAGE', 'You do not have permission to do that');
+            return redirect()->action('PostsController@index');
+        }
 
         $data['post'] = $post;
         return view('posts.edit')->with($data);
@@ -138,6 +142,10 @@ class PostsController extends Controller
         $request->session()->forget('ERROR_MESSAGE');
 
         $post = Post::findorfail($id);
+        if (!$post->ownedBy($request->user())) {
+            $request->session()->flash('ERROR_MESSAGE', 'You do not have permission to do that');
+            return redirect()->action('PostsController@index');
+        }
 
         $post->title = $request->get('title');
         $post->url = $request->get('url');
@@ -160,8 +168,11 @@ class PostsController extends Controller
     {
 
         $post = Post::findorfail($id);
+        $vote = Vote::where('post_id', $id);
 
+        $vote->delete();
         $post->delete();
+
         return redirect()->action('PostsController@index');
     }
 

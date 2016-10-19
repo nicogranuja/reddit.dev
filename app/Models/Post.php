@@ -60,4 +60,9 @@ class Post extends BaseModel
         // return upvotes - downvotes
         return $upvotes - $downvotes;
     }
+
+    public function ownedBy($user)
+    {
+        return ($user->id == $this->created_by);
+    }
 }
