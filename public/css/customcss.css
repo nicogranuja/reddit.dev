@@ -12,3 +12,12 @@ body{
 	font-weight: bold;
 }
 
+.img-show-post{
+	height:50vh;
+
+}
+
+.img-index-post{
+	width: 290px;
+	height: 230px;
+}	

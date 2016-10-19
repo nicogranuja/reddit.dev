@@ -24,7 +24,7 @@
 
 	  <div class="form-group">
 	    <label for="exampleInputEmail1">Email address</label>
-	    <textarea class="form-control" rows="3" name="email" placeholder="Email" >{{old('email') == null ? $user->email : old('email')}}</textarea>
+	    <input class="form-control" rows="3" name="email" placeholder="Email" value="{{old('email') == null ? $user->email : old('email')}}" ></input>
 	  </div>
 	  @if($errors->has('email'))
 			<div class="alert alert-danger">

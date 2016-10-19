@@ -34,6 +34,8 @@ class VoteSeeder extends Seeder
 	        	$vote->save();
         	}
         }
+
+        Post::calculateVoteScore();
         
     }
 }

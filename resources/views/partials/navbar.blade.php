@@ -75,7 +75,7 @@
                 <form action="{{action('PostsController@index')}}" method="GET">
                   {!!csrf_field()!!}
                   <input type="" name="sortRated" value="1" hidden>
-                  <button type="submit" class="btn btn-default">
+                  <button type="submit" class="btn btn-default" id="btn-navbar">
                     <i class="fa fa-star-o" aria-hidden="true"></i>
                       Top Rated
                   </button>
@@ -85,7 +85,7 @@
                 <form action="{{action('PostsController@index')}}" method="GET">
                   {!!csrf_field()!!}
                   <input type="" name="sortNewest" value="1" hidden>
-                  <button type="submit" class="btn btn-default">
+                  <button type="submit" class="btn btn-default" id="btn-navbar">
                     <i class="fa fa-sort-alpha-asc" aria-hidden="true"></i>
                       Newest
                   </button>

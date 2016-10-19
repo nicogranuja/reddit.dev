@@ -43,11 +43,14 @@ User {{$user->id}}
 				<h3 class="text-center">
 					{{ $post->title}}
 				</h3>
-				
+				<div class="">
+					<a href="{{action('PostsController@show', $post->id)}}" title="" class="btn btn-default">
+						Go to Post		
+					</a>
 				<hr>
-				<div class="col-md-offset-3">
+				<div class="col-md-offset-1">
 					<a href="{{$post->url}}" title="">
-						<img src="{{$post->url}}" alt="" class="img img-responsive">
+						<img src="{{$post->url}}" alt="" class="img img-responsive img-show-post">
 					</a>
 				</div>
 
@@ -63,10 +66,7 @@ User {{$user->id}}
 				<div class="pull-left">
 					Posted: {{$post->created_at->setTimezone('America/Chicago')->diffForHumans()}}
 				</div>
-				<div class="pull-right">
-					<a href="{{action('PostsController@show', $post->id)}}" title="" class="btn btn-primary">
-						Go to Post		
-					</a>
+				
 				</div>
 				<hr>
 				<br>

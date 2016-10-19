@@ -27,8 +27,16 @@ class Post extends BaseModel
     }
 
     public static function sortRated(){
-        // return self::orderBy(sum)->with('user');
+        return self::orderBy('vote_score', 'desc')->with('user');
+    }
 
+    public static function calculateVoteScore()
+    {
+        $posts = self::all();
+        foreach ($posts as $post) {
+            $post->vote_score = $post->voteScore();
+            $post->save();
+        }
     }
    
      public function votes()

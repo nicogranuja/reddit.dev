@@ -38,8 +38,7 @@ class PostsController extends Controller
             // dd($data['posts']);
        }
        else if($request->has('sortRated')){
-            // $data['posts'] = Post::sortRated()->paginate(6);
-            
+            $data['posts'] = Post::sortRated()->paginate(6);
        }
         else{
             $posts = Post::orderBy('created_at', 'desc')->paginate(6);
@@ -178,9 +177,10 @@ class PostsController extends Controller
         $vote->save();
         
         $post = $vote->post;
+        $post->vote_score = $post->voteScore();
+        
         $post->save();
         
-        $post->vote_score = $post->voteScore();
         $data = [
             'vote_score' => $post->vote_score,
             'vote' => $vote->vote

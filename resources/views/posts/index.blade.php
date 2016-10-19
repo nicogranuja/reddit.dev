@@ -18,7 +18,7 @@
 				</a>
 					<div class="text-center" >
 						<a href="{{$post->url}}" title="">
-							<img src="{{$post->url}}" alt="">
+							<img src="{{$post->url}}" alt="" class="img-index-post">
 						</a>
 						<div class="panel panel-default">
 					  

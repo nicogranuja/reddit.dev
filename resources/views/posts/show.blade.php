@@ -15,9 +15,9 @@ Post {{$post->id}}
 			<span>Posted by:</span>
 			<a href="{{action('UsersController@show',$post->user->id)}}" title=""> {{$post->user->name}}</a>
 			<hr>
-			<div class="col-md-offset-4">
+			<div class="col-sm-offset-3">
 				<a href="{{$post->url}}" title="">
-					<img src="{{$post->url}}" alt="" class="img img-responsive">
+					<img src="{{$post->url}}" alt="" class="img img-responsive img-show-post">
 				</a>
 			</div>
 
