@@ -26,7 +26,11 @@ User {{$user->id}}
 			</tr>
 		</tbody>
 	</table>
-	<a href="{{action('UsersController@edit', $user->id)}}" title="" class="btn btn-primary">Edit Profile</a>
+	@if(Auth::id() == $user->id)
+		<a href="{{action('UsersController@edit', $user->id)}}" title="" class="btn btn-primary">
+			Edit Profile
+		</a>
+	@endif
 	<br>
 	<h3>Posts: {{count($user->posts) ? count($user->posts) : "No posts found."}}</h3>
 	@if(count($user->posts))
