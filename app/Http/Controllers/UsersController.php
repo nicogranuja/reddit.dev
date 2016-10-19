@@ -31,6 +31,7 @@ class UsersController extends Controller
         }
         else{
             $data['users'] = User::search($request->get('searchName'))->paginate(9);
+            // dd($data['users']);
         }
         return view('users.index')->with($data);
     }

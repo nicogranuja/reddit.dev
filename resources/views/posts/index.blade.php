@@ -18,14 +18,14 @@
 				</a>
 				<div class="text-center">
 					<a href="{{$post->url}}" title="">
-						<img src="https://unsplash.it/230/?random" alt="">
+						<img src="{{$post->url}}" alt="">
 					</a>
 				</div>
 
 				<div class="panel panel-default">
 				  
 				  <div class="panel-body text-center">
-						{{ substr($post->content, 0,40) . "..."}}
+						{{ substr($post->content, 0,30) . "..."}}
 				  </div>
 				</div>
 
@@ -38,6 +38,29 @@
 						Go to Post		
 					</a>
 				</div>
+				
+				<form action="{{action('PostsController@setVotes')}}" method="POST" class="pull-left">
+					{!!csrf_field()!!}
+					<input type="" name="vote" value="1" hidden>
+					<input type="" name="post_id" value={{$post->id}} hidden>
+
+					<button type="submit" class="btn btn-default btn-md">
+						<i class="fa fa-thumbs-o-up" aria-hidden="true">{{$post->upvotes->count()}}</i>
+					</button>
+				</form>
+				<form action="{{action('PostsController@setVotes')}}" method="POST" class="">
+					{!!csrf_field()!!}
+					<input type="" name="vote" value="-1" hidden>
+					<input type="" name="post_id" value={{$post->id}} hidden>
+					
+
+					<button type="submit" class="btn btn-default btn-md">
+						<i class="fa fa-thumbs-down" aria-hidden="true">{{$post->downvotes->count()}}</i>
+					</button>
+
+					
+				</form>
+			
 
 			</div>
 		</div>	

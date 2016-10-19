@@ -8,13 +8,15 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand">
-        Reddit.dev
-      </a>
+      
       @if(Auth::check())
         <div class="navbar-brand">
            <small>Welcome, {{Auth::user()->name}}</small>
         </div>
+      @else
+        <a class="navbar-brand">
+          Reddit.dev
+        </a>
       @endif
       
     </div>
@@ -53,8 +55,7 @@
         
       </ul>
 
-      <form class="navbar-form navbar-right" method="GET" action="{{action('PostsController@index')}}">
-        
+      <form class="navbar-form navbar-right" method="GET" action="{{action('PostsController@index')}}"> 
         <div class="form-group">
           <input type="text" name="searchTitle" class="form-control" placeholder="Search">
         </div>

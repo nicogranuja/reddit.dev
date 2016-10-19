@@ -17,6 +17,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::post('/post/votes', 'PostsController@setVotes');
+
 //Home Controller
 Route::get('/uppercase/{word?}', 'HomeController@uppercase');
 

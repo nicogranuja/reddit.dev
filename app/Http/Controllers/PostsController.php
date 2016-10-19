@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Models\Post;
+use App\Models\Vote;
 use App\User;
 
 use App\Http\Requests;
@@ -30,7 +31,6 @@ class PostsController extends Controller
 
        if($request->has('searchTitle'))
        {
-
             $data['posts'] = Post::search($request->get('searchTitle'))->paginate(6);
        }
         else{
@@ -158,7 +158,32 @@ class PostsController extends Controller
         return redirect()->action('PostsController@index');
     }
 
-    public function search(Request $request){
+    
+
+    public function setVotes(Request $request){
+
+        $vote = Vote::with('post')->firstOrCreate([
+            'post_id' => $request->input('post_id'),
+            'user_id' => $request->user()->id
+        ]);
+        $vote->vote = $request->input('vote');
+        $vote->save();
         
+        $post = $vote->post;
+        $post->save();
+        
+        $post->vote_score = $post->voteScore();
+        $data = [
+            'vote_score' => $post->vote_score,
+            'vote' => $vote->vote
+        ];
+        
+
+        return back()->with($data);
     }
+
+
+
+
+
 }
