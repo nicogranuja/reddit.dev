@@ -34,7 +34,7 @@
 				</div>
 				<hr>
 				<div class="">
-					<a href="{{action('PostsController@show', $post->id)}}" title="" class="btn btn-default">
+					<a href="{{action('PostsController@show', $post->id)}}" title="" class="btn btn-primary">
 						Go to Post		
 					</a>
 				</div>
@@ -60,6 +60,16 @@
 
 					
 				</form>
+
+				<div class="col-md-offset-8">
+					<h3>
+						
+						<label class="label label-info">
+							Score:<i class="glyphicon glyphicon-fire"></i> {{$post->voteScore()}}
+						</label>
+					</h3>
+					
+				</div>
 			
 
 			</div>

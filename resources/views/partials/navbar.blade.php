@@ -10,9 +10,43 @@
       </button>
       
       @if(Auth::check())
-        <div class="navbar-brand">
-           <small>Welcome, {{Auth::user()->name}}</small>
-        </div>
+
+        <ul class="nav navbar-nav">
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> {{Auth::user()->name}} <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="{{action('UsersController@show', Auth::user()->id)}}" title="">
+                <i class="fa fa-user" aria-hidden="true"></i>
+                Profile
+              </li>
+              <li><a href="{{action('UsersController@edit', Auth::user()->id)}}" title="">
+                <i class="fa fa-pencil" aria-hidden="true"></i>
+                Edit Profile
+                </a>
+              </li>
+                <li class=""><a href="{{action('PostsController@create')}}">
+                  <i class="fa fa-plus-circle" aria-hidden="true"></i>
+                  Create Post
+                </li>
+                <li>
+                  <a href="{{action('UsersController@index')}}">
+                    <i class="fa fa-users" aria-hidden="true"></i>Users
+                  </a>
+                </li>
+
+
+              <li role="separator" class="divider"></li>
+              <li class="">
+                <a href="{{action('Auth\AuthController@getLogout')}}">
+                    <i class="fa fa-sign-out" aria-hidden="true"></i>
+                    Logout
+                </a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+
+        
       @else
         <a class="navbar-brand">
           Reddit.dev
@@ -24,32 +58,24 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav" style="font-size:17px">
-      <li>
-        <a  href="{{action('PostsController@index')}}">
-          <span class="glyphicon glyphicon-edit" aria-hidden="true">Posts</span></a>          
-      </li>
-      @if(!Auth::check())
         <li>
-          <a href="{{action('Auth\AuthController@getLogin')}}">
-            <span class="glyphicon glyphicon-log-in" aria-hidden="true">Login</span></a>
+          <a  href="{{action('PostsController@index')}}">
+            <i class="fa fa-clipboard" aria-hidden="true"></i>
+            All Posts
+          </a>
         </li>
-        <li>
-          <a href="{{action('Auth\AuthController@getRegister')}}">
-            <span class="glyphicon glyphicon-plus" aria-hidden="true">Register</span></a>
-        </li>
-      @else
-
+        @if(!Auth::check())
           <li>
-            <a href="{{action('UsersController@index')}}">
-              <span class="glyphicon glyphicon-user" aria-hidden="true">Users</span></a>
+            <a href="{{action('Auth\AuthController@getLogin')}}">
+              <i class="fa fa-sign-in" aria-hidden="true"></i>
+              Login
+            </a>
           </li>
-          
-          <li class=""><a href="{{action('PostsController@create')}}">
-            <span class="glyphicon glyphicon-pencil" aria-hidden="true">Post</span></a>
-          </li>
-
-          <li class=""><a href="{{action('Auth\AuthController@getLogout')}}">
-            <span class="glyphicon glyphicon-log-out" aria-hidden="true">Logout</span></a>
+          <li>
+            <a href="{{action('Auth\AuthController@getRegister')}}">
+              <i class="fa fa-user-plus" aria-hidden="true"></i>
+              Register
+            </a>
           </li>
         @endif
         
@@ -57,9 +83,9 @@
 
       <form class="navbar-form navbar-right" method="GET" action="{{action('PostsController@index')}}"> 
         <div class="form-group">
-          <input type="text" name="searchTitle" class="form-control" placeholder="Search">
+          <input type="text" name="searchTitle" class="form-control" placeholder="Search Posts">
         </div>
-        <button type="submit" class="btn btn-default">Search Title</button>
+        <button type="submit" class="btn btn-default">Search</button>
       </form>
      
     </div><!-- /.navbar-collapse -->
