@@ -32,7 +32,17 @@ User {{$user->id}}
 		</a>
 	@endif
 	<br>
-	<h3>Posts: {{count($user->posts) ? count($user->posts) : "No posts found."}}</h3>
+	<div class="panel panel-default" style="width: 40%">
+	  <div class="panel-body">
+	    	<h5>Posts: {{count($user->posts) ? count($user->posts) : "No posts found."}}</h3>
+	  </div>
+	  <div class="panel-footer">
+	  	@if(count($user->posts))
+			<h5>Posts Score: {{$user->getTotalScore($user->posts)}}</h5>
+		@endif
+	  </div>
+	</div>
+	{{-- <h3>Posts: {{count($user->posts) ? count($user->posts) : "No posts found."}}</h3> --}}
 	@if(count($user->posts))
 		<h4>Posts Score: {{$user->getTotalScore($user->posts)}}</h4>
 	@endif
