@@ -33,6 +33,14 @@ class PostsController extends Controller
        {
             $data['posts'] = Post::search($request->get('searchTitle'))->paginate(6);
        }
+       else if($request->has('sortNewest')){
+            $data['posts'] = Post::sortNew()->paginate(6);
+            // dd($data['posts']);
+       }
+       else if($request->has('sortRated')){
+            // $data['posts'] = Post::sortRated()->paginate(6);
+            
+       }
         else{
             $posts = Post::orderBy('created_at', 'desc')->paginate(6);
             $data['posts'] = $posts;

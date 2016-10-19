@@ -22,6 +22,14 @@ class Post extends BaseModel
     		->orWhere('content', 'LIKE', '%'.$searchTerm.'%')->with('user');
     }
 
+    public static function sortNew(){
+        return self::orderBy('created_at','desc')->with('user');
+    }
+
+    public static function sortRated(){
+        // return self::orderBy(sum)->with('user');
+
+    }
    
      public function votes()
     {

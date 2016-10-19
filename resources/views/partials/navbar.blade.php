@@ -13,7 +13,7 @@
 
         <ul class="nav navbar-nav">
           <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> {{Auth::user()->name}} <span class="caret"></span></a>
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" id="dropdownLink"> {{Auth::user()->name}} <span class="caret"></span></a>
             <ul class="dropdown-menu">
               <li><a href="{{action('UsersController@show', Auth::user()->id)}}" title="">
                 <i class="fa fa-user" aria-hidden="true"></i>
@@ -33,7 +33,26 @@
                     <i class="fa fa-users" aria-hidden="true"></i>Users
                   </a>
                 </li>
-
+                <li class="">
+                <form action="{{action('PostsController@index')}}" method="GET">
+                  {!!csrf_field()!!}
+                  <input type="" name="sortRated" value="1" hidden>
+                  <button type="submit" class="btn btn-default" id="btn-navbar">
+                    <i class="fa fa-star-o" aria-hidden="true"></i>
+                      Top Rated
+                  </button>
+                </form>
+              </li>
+              <li class="">
+                <form action="{{action('PostsController@index')}}" method="GET">
+                  {!!csrf_field()!!}
+                  <input type="" name="sortNewest" value="1" hidden>
+                  <button type="submit" class="btn btn-default" id="btn-navbar">
+                    <i class="fa fa-sort-alpha-asc" aria-hidden="true"></i>
+                      Newest
+                  </button>
+                </form>
+              </li>
 
               <li role="separator" class="divider"></li>
               <li class="">
@@ -48,9 +67,34 @@
 
         
       @else
-        <a class="navbar-brand">
-          Reddit.dev
-        </a>
+        <ul class="nav navbar-nav">
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" id="dropdownLink"> Reddit.dev <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li class="">
+                <form action="{{action('PostsController@index')}}" method="GET">
+                  {!!csrf_field()!!}
+                  <input type="" name="sortRated" value="1" hidden>
+                  <button type="submit" class="btn btn-default">
+                    <i class="fa fa-star-o" aria-hidden="true"></i>
+                      Top Rated
+                  </button>
+                </form>
+              </li>
+              <li class="">
+                <form action="{{action('PostsController@index')}}" method="GET">
+                  {!!csrf_field()!!}
+                  <input type="" name="sortNewest" value="1" hidden>
+                  <button type="submit" class="btn btn-default">
+                    <i class="fa fa-sort-alpha-asc" aria-hidden="true"></i>
+                      Newest
+                  </button>
+                </form>
+              </li>
+              
+            </ul>
+          </li>
+        </ul>
       @endif
       
     </div>
@@ -64,14 +108,15 @@
             All Posts
           </a>
         </li>
+
         @if(!Auth::check())
-          <li>
+          <li class="">
             <a href="{{action('Auth\AuthController@getLogin')}}">
               <i class="fa fa-sign-in" aria-hidden="true"></i>
               Login
             </a>
           </li>
-          <li>
+          <li class="">
             <a href="{{action('Auth\AuthController@getRegister')}}">
               <i class="fa fa-user-plus" aria-hidden="true"></i>
               Register

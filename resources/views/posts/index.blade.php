@@ -16,18 +16,19 @@
 
 				<span>Posted:</span><a href="{{action('UsersController@show',$post->user->id)}}" title="">{{$post->user->name}}
 				</a>
-				<div class="text-center">
-					<a href="{{$post->url}}" title="">
-						<img src="{{$post->url}}" alt="">
-					</a>
+					<div class="text-center" >
+						<a href="{{$post->url}}" title="">
+							<img src="{{$post->url}}" alt="">
+						</a>
+						<div class="panel panel-default">
+					  
+					  <div class="panel-body text-center">
+							{{ substr($post->content, 0,30) . "..."}}
+					  </div>
+					</div>
 				</div>
 
-				<div class="panel panel-default">
-				  
-				  <div class="panel-body text-center">
-						{{ substr($post->content, 0,30) . "..."}}
-				  </div>
-				</div>
+				
 
 				<div class="">
 					Posted on: {{$post->created_at->setTimezone('America/Chicago')->diffForHumans()}}
