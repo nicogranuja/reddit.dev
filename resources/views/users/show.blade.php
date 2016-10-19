@@ -43,9 +43,9 @@ User {{$user->id}}
 	  </div>
 	</div>
 	{{-- <h3>Posts: {{count($user->posts) ? count($user->posts) : "No posts found."}}</h3> --}}
-	@if(count($user->posts))
+	{{-- @if(count($user->posts))
 		<h4>Posts Score: {{$user->getTotalScore($user->posts)}}</h4>
-	@endif
+	@endif --}}
 	<hr>
 	@foreach($user->posts as $post)
 		@if(count($user->posts) > 8)
