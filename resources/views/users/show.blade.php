@@ -26,7 +26,7 @@ User {{$user->id}}
 			</tr>
 		</tbody>
 	</table>
-	<a href="{{action('UsersController@edit', $user->id)}}" title="" class="btn btn-primary">Edit User</a>
+	<a href="{{action('UsersController@edit', $user->id)}}" title="" class="btn btn-primary">Edit Profile</a>
 	<br>
 	<h3>Posts: {{count($user->posts) ? count($user->posts) : "No posts found."}}</h3>
 	@if(count($user->posts))
@@ -44,7 +44,7 @@ User {{$user->id}}
 			<div class="well show-box">
 			
 				<h3 class="text-center">
-					{{ $post->title}}
+					{{ substr($post->title, 0,20)."..."}}
 				</h3>
 				<div class="">
 					<a href="{{action('PostsController@show', $post->id)}}" title="" class="btn btn-default">
@@ -52,7 +52,8 @@ User {{$user->id}}
 					</a>
 				</div>
 				<hr>
-				<div class="col-md-offset-1">
+
+				<div class="{{(count($user->posts)>1 ? "col-md-offset-1" : "col-md-offset-")}}">
 					<a href="{{$post->url}}" title="">
 						<img src="{{$post->url}}" alt="" class="img img-responsive img-show-post">
 					</a>
