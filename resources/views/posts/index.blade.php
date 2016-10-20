@@ -45,8 +45,8 @@
 					<input type="" name="vote" value="1" hidden>
 					<input type="" name="post_id" value={{$post->id}} hidden>
 
-					<button type="submit" class="btn btn-default btn-md">
-						<i class="fa fa-thumbs-o-up" aria-hidden="true">{{$post->upvotes->count()}}</i>
+					<button type="submit" class="btn btn-default btn-md btn-thumbs">
+						<i class="fa fa-thumbs-o-up " aria-hidden="true">{{$post->upvotes->count()}}</i>
 					</button>
 				</form>
 				<form action="{{action('PostsController@setVotes')}}" method="POST" class="">
@@ -55,8 +55,8 @@
 					<input type="" name="post_id" value={{$post->id}} hidden>
 					
 
-					<button type="submit" class="btn btn-default btn-md">
-						<i class="fa fa-thumbs-down" aria-hidden="true">{{$post->downvotes->count()}}</i>
+					<button type="submit" class="btn btn-default btn-md btn-thumbs">
+						<i class="fa fa-thumbs-down btn-thumbs " aria-hidden="true">{{$post->downvotes->count()}}</i>
 					</button>
 
 					
