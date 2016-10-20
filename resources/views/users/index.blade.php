@@ -22,13 +22,15 @@
 	@foreach($users as $user)
 		<tbody>
 			<tr>
-				@if(Auth::user()->email == 'nico@codeup.com')
+				
+				@if(Auth::check() && Auth::user()->email == 'nico@codeup.com')
 					<td>
 						<a href="{{action('UsersController@edit', $user->id)}}" class="btn btn-primary btn-sm">Edit</a>
 						<a href="{{action('UsersController@destroy', $user->id)}}" class="btn btn-danger btn-sm">Delete</a>
 					</td>
 				@else
 					<td>{{$user->id}}</td>
+				
 				@endif
 
 				<td>

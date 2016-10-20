@@ -109,7 +109,13 @@
           </a>
         </li>
 
+
         @if(!Auth::check())
+          <li>
+              <a href="{{action('UsersController@index')}}">
+                <i class="fa fa-users" aria-hidden="true"></i>Users
+              </a>
+          </li>
           <li class="">
             <a href="{{action('Auth\AuthController@getLogin')}}">
               <i class="fa fa-sign-in" aria-hidden="true"></i>
