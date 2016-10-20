@@ -13,9 +13,7 @@ use App\Models\Post;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'PostsController@index');
 
 Route::post('/post/votes', 'PostsController@setVotes');
 
